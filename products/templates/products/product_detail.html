@@ -22,7 +22,7 @@
             <div class="image-container my-5">
                 <!-- Product images -->
                 {% if product.image %}
-                <a href="{{ product.image.ur }}" target="_blank">
+                <a href="{{ product.image.url }}" target="_blank">
                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                 </a>
                 {% else %}
