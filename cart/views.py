@@ -20,5 +20,5 @@ def add_to_cart(request, item_id):
     else:
         cart[item_id] = quantity # Adds item_id to cart if it is not already present
 
-    request.session['cart'] = cart # Overwrites the 'cart' variable with the updated value
+    request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(redirect_url) # Redirects user once process is complete
