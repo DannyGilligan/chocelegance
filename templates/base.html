@@ -109,10 +109,10 @@
               <div class="text-center">
                 <div><i class="fas fa-shopping-cart fa-lg"></i></div>
                 <p class="my-0">
-                  {% if grand_total %}
-                    ${{ grand_total|floatformat:2 }}
+                  {% if grand_total %} <!-- Checks if the 'grand_total' variable exists-->
+                    ${{ grand_total|floatformat:2 }} <!-- if 'grand_total' variable exists, the value will displayed to two decimal places-->
                   {% else %}
-                    $0.00
+                    $0.00 <!-- if the 'grand_total' variable does not exist, a default $0.00 will be displayed -->
                   {% endif %}
                 </p>
               </div>

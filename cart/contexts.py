@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 from django.conf import settings
-from django.shotcuts import get_object_or_404
+from django.shortcuts import get_object_or_404
 from products.models import Product
 
 def cart_contents(request):
@@ -19,7 +19,7 @@ def cart_contents(request):
         product = get_object_or_404(Product, pk=item_id) # Gets product
         total += quantity * product.price # Adds quantity multiplied by price to total
         product_count += quantity # Increments the quantity
-        bag_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
+        cart_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
