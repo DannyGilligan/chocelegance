@@ -9,6 +9,10 @@ def view_cart(request):
 
     return render(request, 'cart/cart.html')
 
+
+
+
+
 ######################### ADD TO CART #######################################
 
 def add_to_cart(request, item_id):
@@ -24,14 +28,18 @@ def add_to_cart(request, item_id):
     
     cart = request.session.get('cart', {}) # Adds 'cart' to session, or creates it if it doesn't, which will allow the user to keep adding items to cart while browsing site, session will persist until user closes browser
   
-    if size:
+    if size: # If items has sizes, this block of code will run
         if item_id in list(cart.keys()): # If item is in the cart, checks if item of same size exists and updates quantity
             if size in cart[item_id]['items_by_size'].keys():
                 cart[item_id]['items_by_size'][size] += quantity
+                messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
             else:
                 cart[item_id]['items_by_size'][size] = quantity
+                messages.success(request, f'Added size {size.upper()} {product.name} to your cart')
         else: # If item not in cart, it will be added as a dictionary
             cart[item_id] = {'items_by_size': {size: quantity}}
+            messages.success(request, f'Added size {size.upper()} {product.name} to your cart')
+
     else: # If there is no size for the product, this block of code will run
         if item_id in list (cart.keys()):
             cart[item_id] += quantity # Increments quantity of specific item in user cart if items_id is already present
@@ -42,6 +50,9 @@ def add_to_cart(request, item_id):
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(redirect_url) # Redirects user once process is complete
+
+
+
 
 ########################### ADJUST CART ######################################
 
@@ -71,6 +82,10 @@ def adjust_cart(request, item_id):
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(reverse(view_cart)) # Redirects user back to same page once process is complete
+
+
+
+
 
 ############################## REMOVE FROM CART ###################################
 
