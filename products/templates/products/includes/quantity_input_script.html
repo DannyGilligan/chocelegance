@@ -1,18 +1,44 @@
 <script type="text/javascript">
 
-    // The steps below are used to increment the quantity of items when clicked
+    // The function below will ensure the amount appearing in the quantity box will not be less than zero or above 99
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop(`disabled`, minusDisabled);
+        $(`#increment-qty_${itemId}`).prop(`disabled`, plusDisabled);
+    }
+
+    // The steps below are used to increment the quantity of items when button is clicked
     $('.increment-qty').click(function(e) {
         e.preventDefault();
         var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
         var currentValue = parseInt($(closestInput).val());
         $(closestInput).val(currentValue + 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
     })
 
-    // The steps below are used to decrement the quantity of items when clicked
+    // The steps below will enable or disable quantity input buttons as needed when page is loaded
+    var allQtyInputs = $(`.qty_input`);
+    for(var i = 0; i < allQtyInputs.length; i++) {
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    // Any time the quantity value changes, the steps below will run to check if the input button needs to be disabled/enabled
+    $(`.qty_input`).change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    })
+
+    // The steps below are used to decrement the quantity of items when button is clicked
     $('.decrement-qty').click(function(e) {
         e.preventDefault();
         var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
         var currentValue = parseInt($(closestInput).val());
         $(closestInput).val(currentValue - 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
     })
 </script>
