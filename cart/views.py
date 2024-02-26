@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 # Create your views here.
 
@@ -21,12 +21,12 @@ def add_to_cart(request, item_id):
     cart = request.session.get('cart', {}) # Adds 'cart' to session, or creates it if it doesn't, which will allow the user to keep adding items to cart while browsing site, session will persist until user closes browser
   
     if size:
-        if item_id in list(cart.keys()): # If item is in the bag, checks if item of same size exists and updates quantity
+        if item_id in list(cart.keys()): # If item is in the cart, checks if item of same size exists and updates quantity
             if size in cart[item_id]['items_by_size'].keys():
                 cart[item_id]['items_by_size'][size] += quantity
             else:
                 cart[item_id]['items_by_size'][size] = quantity
-        else: # If item not in bag, it will be added as a dictionary
+        else: # If item not in cart, it will be added as a dictionary
             cart[item_id] = {'items_by_size': {size: quantity}}
     else: # If there is no size for the product, this block of code will run
         if item_id in list (cart.keys()):
@@ -56,12 +56,40 @@ def adjust_cart(request, item_id):
             cart[item_id]['items_by_size'][size] = quantity
         else:
             del cart[item_id]['items_by_size'][size]
+            if not cart[item_id]['items_by_size']:
+                bag.pop(item_id) 
 
     else: # If there is no size for the product, this block of code will run
         if quantity > 0:
             cart[item_id] = quantity
         else:
-            del cart.pop[item_id]
+            cart.pop[item_id]
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(reverse(view_cart)) # Redirects user back to same page once process is complete
+
+
+
+def remove_from_cart(request, item_id):
+    """ This view will remove the item from the cart when the remove button is clicked """
+
+    try:
+        size = None # Product size is initialised with a None value
+        if 'product_size' in request.POST: # If Product size is included in the POST request, the size variable will be updated to that value
+            size = request.POST['product_size']
+        
+        cart = request.session.get('cart', {}) # Adds 'cart' to session, or creates it if it doesn't, which will allow the user to keep adding items to cart while browsing site, session will persist until user closes browser
+    
+        if size:
+            del cart[item_id]['items_by_size'][size]
+            if not cart[item_id]['items_by_size']:
+                bag.pop[item_id] 
+
+
+        else: # If there is no size for the product, this block of code will run
+            cart.pop(item_id)
+
+        request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)
