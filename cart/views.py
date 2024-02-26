@@ -35,6 +35,7 @@ def add_to_cart(request, item_id):
     else: # If there is no size for the product, this block of code will run
         if item_id in list (cart.keys()):
             cart[item_id] += quantity # Increments quantity of specific item in user cart if items_id is already present
+            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}')
         else:
             cart[item_id] = quantity # Adds item_id to cart if it is not already present
             messages.success(request, f'Added {product.name} to your cart') # Sends success message, which will trigger success toast
