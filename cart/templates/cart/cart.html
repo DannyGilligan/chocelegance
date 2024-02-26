@@ -5,7 +5,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col">
-            
+
         </div>
     </div>
 </div>
@@ -45,27 +45,29 @@
 
                     <!-- For loop will iterate through items in shopping cart, creating the first row below with each iteration -->
                     {% for item in cart_items %}
-                        <tr>
-                            <!-- Product image -->
-                            <td class="p3 w-25">
-                                <img class="img-fluid rounded" src="{{ item.product.image.url }}">
-                            </td>
+                    <tr>
+                        <!-- Product image -->
+                        <td class="p3 w-25">
+                            <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                        </td>
 
-                            <!-- Product name and SKU -->
-                            <td class="py-3">
-                                <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                                <p class="my-0 small text-muted"><strong>SKU: {{ item.product.sku|upper }}</strong></p>
-                            </td>
+                        <!-- Product name and SKU -->
+                        <td class="py-3">
+                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                            <p class="my-0"><strong>Size:
+                                </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}
+                            </p>
+                            <p class="my-0 small text-muted"><strong>SKU: {{ item.product.sku|upper }}</strong></p>
+                        </td>
 
-                            <!-- Product price -->
-                            <td class="py-3">
-                                <p class="my-0">$ {{ item.product.price }}</p>
-                            </td>
+                        <!-- Product price -->
+                        <td class="py-3">
+                            <p class="my-0">$ {{ item.product.price }}</p>
+                        </td>
 
-                            <!-- Product quantity -->
-                            <td class="py-3 w-25">
-                                <form class="form update-form" method="POST" action=""></form>
+                        <!-- Product quantity -->
+                        <td class="py-3 w-25">
+                            <form class="form update-form" method="POST" action="">
                                 {% csrf_token %}
 
                                 <!-- Form inputs -->
@@ -73,39 +75,45 @@
                                     <div class="input-group">
                                         <!-- Increment quantity button -->
                                         <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id}}">
-                                            <span>
-                                                <i class="fas fa-minus fa-sm"></i>
-                                            </span>
+                                            <button class="decrement-qty btn btn-sm btn-black rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id}}">
+                                                <span>
+                                                    <i class="fas fa-minus fa-sm"></i>
+                                                </span>
                                             </button>
                                         </div>
-    
+
                                         <!-- Quantity value -->
-                                        <input class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-    
+                                        <input class="form-control form-control-sm qty_input" type="number"
+                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                            data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+
                                         <!-- Decrement quantity button -->
                                         <div class="input-group-append">
                                             <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                            <span>
-                                                <i class="fas fa-plus fa-sm"></i>
-                                            </span>
-                                        </button>
+                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                <span>
+                                                    <i class="fas fa-plus fa-sm"></i>
+                                                </span>
+                                            </button>
                                         </div>
                                         <!-- If product has a size selection available, the selector below will be displayed -->
                                         {% if item.product.has_sizes %}
                                         <input type="hidden" name="product_size" value="{{ item.size }}">
                                         {% endif %}
+
                                     </div>
                                 </div>
-                            </td>
+                            </form>
+                            <a class="update-link text-info"><small>Update</small></a>
+                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-size="{{ item.size }}"><small>Remove</small></a>
+                        </td>
 
-                            <!-- Product subtotal -->
-                            <td class="py-3">
-                                <p class="my-0">{{ item.product.subtotal }}</p>
-                            </td>
-                        </tr>
+                        <!-- Product subtotal -->
+                        <td class="py-3">
+                            <p class="my-0">{{ item.product.subtotal }}</p>
+                        </td>
+                    </tr>
                     {% endfor %}
                     <!-- This row contains the bag total and the amount left to spend in order to get free delivery -->
                     <tr>
@@ -114,9 +122,10 @@
                             <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
                             <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                             {% if free_delivery_delta > 0 %}
-                                <p class="mb-1 text-danger">
-                                    You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
-                                </p>
+                            <p class="mb-1 text-danger">
+                                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong>
+                                more!
+                            </p>
                             {% endif %}
                         </td>
                     </tr>
