@@ -37,7 +37,7 @@ def add_to_cart(request, item_id):
             cart[item_id] += quantity # Increments quantity of specific item in user cart if items_id is already present
         else:
             cart[item_id] = quantity # Adds item_id to cart if it is not already present
-            messages.success(request, f'Added ${product.name} to your bag')
+            messages.success(request, f'Added {product.name} to your cart') # Sends success message, which will trigger success toast
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(redirect_url) # Redirects user once process is complete
