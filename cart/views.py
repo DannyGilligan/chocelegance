@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
+from products.models import Product
 
-# Create your views here.
+######################### VIEW CART ########################################
 
 def view_cart(request):
     """ A view to render shopping cart contents page """
 
     return render(request, 'cart/cart.html')
 
+######################### ADD TO CART #######################################
 
 def add_to_cart(request, item_id):
     """ Form is submitted to this view. Allows user to add quantity of products to shopping cart """
 
+    product = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity')) # Converts form quantity to integer and sends to server
     redirect_url = request.POST.get('redirect_url') # Where the user will redirected to once the form is submitted
     
@@ -33,13 +37,12 @@ def add_to_cart(request, item_id):
             cart[item_id] += quantity # Increments quantity of specific item in user cart if items_id is already present
         else:
             cart[item_id] = quantity # Adds item_id to cart if it is not already present
+            messages.success(request, f'Added ${product.name} to your bag')
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(redirect_url) # Redirects user once process is complete
 
-
-
-
+########################### ADJUST CART ######################################
 
 def adjust_cart(request, item_id):
     """ This view will adjust the quantity of the products in the cart and the related amount when the update button is clicked """
@@ -68,7 +71,7 @@ def adjust_cart(request, item_id):
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(reverse(view_cart)) # Redirects user back to same page once process is complete
 
-
+############################## REMOVE FROM CART ###################################
 
 def remove_from_cart(request, item_id):
     """ This view will remove the item from the cart when the remove button is clicked """
