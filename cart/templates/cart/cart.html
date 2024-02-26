@@ -30,6 +30,10 @@
 
             <!-- Table will only be rendered if cart has any content -->
             {% if cart_items %}
+            {{ cart_items }}
+            <br>
+            <br>
+            {{ request.session.bag }}
             <div class="table-responsive rounded">
                 <table class="table table-sm table-borderless">
                     <!-- Table header-->

@@ -19,7 +19,7 @@ def cart_contents(request):
         if isinstance(item_data, int):
             product = get_object_or_404(Product, pk=item_id) # Gets product
             total += item_data * product.price # Adds quantity multiplied by price to total
-            product_count += quantity # Increments the quantity
+            product_count += item_data # Increments the quantity
             cart_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
                 'item_id': item_id,
                 'quantity': item_data,

@@ -16,7 +16,7 @@ def add_to_cart(request, item_id):
     
     size = None # Product size is initialised with a None value
     if 'product_size' in request.POST: # If Product size is included in the POST request, the size variable will be updated to that value
-        size = request.POST['size']
+        size = request.POST['product_size']
     
     cart = request.session.get('cart', {}) # Adds 'cart' to session, or creates it if it doesn't, which will allow the user to keep adding items to cart while browsing site, session will persist until user closes browser
   
