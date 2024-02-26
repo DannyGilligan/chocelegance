@@ -170,7 +170,7 @@ a.category-badge > span.badge:hover {
     overflow-y: auto;
 }
 
-.bag-notification-wrapper {
+.cart-notification-wrapper {
     height: 100px;
     overflow-x: hidden;
     overflow-y: auto;
