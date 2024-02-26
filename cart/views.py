@@ -61,7 +61,7 @@ def adjust_cart(request, item_id):
         if quantity > 0:
             cart[item_id] = quantity
         else:
-            del cart.pop[item]
+            del cart.pop[item_id]
 
     request.session['cart'] = cart # Creates session variable and overwrites the 'cart' variable with the updated value
     return redirect(reverse(view_cart)) # Redirects user back to same page once process is complete
