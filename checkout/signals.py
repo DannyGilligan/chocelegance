@@ -1,4 +1,4 @@
-from django.db.models.signals import posts_save, post_delete
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from .models import OrderLineItem
