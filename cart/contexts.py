@@ -15,15 +15,27 @@ def cart_contents(request):
     product_count = 0
     cart = request.session.get('cart', {})
 
-    for item_id, quantity in cart.items(): # Cart variable relates to the session
-        product = get_object_or_404(Product, pk=item_id) # Gets product
-        total += quantity * product.price # Adds quantity multiplied by price to total
-        product_count += quantity # Increments the quantity
-        cart_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
-            'item_id': item_id,
-            'quantity': quantity,
-            'product': product,
-        })
+    for item_id, item_data in cart.items(): # Cart variable relates to the session
+        if isinstance(item_data, int):
+            product = get_object_or_404(Product, pk=item_id) # Gets product
+            total += item_data * product.price # Adds quantity multiplied by price to total
+            product_count += quantity # Increments the quantity
+            cart_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
+                'item_id': item_id,
+                'quantity': item_data,
+                'product': product,
+            })
+        else:
+            for size, quantity in item_data['items_by_size'].items():
+                total += quantity * product.price
+                product_count += quantity
+                cart_items.append({ # Dictionary is added to list of cart items containing details stored in the Product object
+                    'item_id': item_id,
+                    'quantity': item_data,
+                    'product': product,
+                    'size': size,
+                })
+
 
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
