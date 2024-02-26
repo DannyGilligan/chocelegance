@@ -23,6 +23,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True) # Optional
     name = models.CharField(max_length=254) # Required
     description = models.TextField() # Required
+    has_sizes = models.BooleanField(default=False, null=True, blank=True) # Optional
     price = models.DecimalField(max_digits=6, decimal_places=2) # Required
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # Optional
     image_url = models.URLField(max_length=1024, null=True, blank=True) # Optional
