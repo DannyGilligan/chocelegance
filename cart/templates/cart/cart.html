@@ -158,3 +158,9 @@
 </div>
 
 {% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!-- Loads the script used to increase or decrease the itmes when '+' or '-' button is clicked -->
+{% include 'products/includes/quantity_input_script.html' %}
+{% endblock %}
