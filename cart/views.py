@@ -57,7 +57,7 @@ def adjust_cart(request, item_id):
         else:
             del cart[item_id]['items_by_size'][size]
             if not cart[item_id]['items_by_size']:
-                bag.pop(item_id) 
+                cart.pop(item_id) 
 
     else: # If there is no size for the product, this block of code will run
         if quantity > 0:
@@ -83,7 +83,7 @@ def remove_from_cart(request, item_id):
         if size:
             del cart[item_id]['items_by_size'][size]
             if not cart[item_id]['items_by_size']:
-                bag.pop[item_id] 
+                cart.pop[item_id] 
 
 
         else: # If there is no size for the product, this block of code will run

@@ -119,7 +119,7 @@
                         </td>
                     </tr>
                     {% endfor %}
-                    <!-- This row contains the bag total and the amount left to spend in order to get free delivery -->
+                    <!-- This row contains the cart total and the amount left to spend in order to get free delivery -->
                     <tr>
                         <td colspan="5" class="pt-5 text-right">
                             <h6><strong>Cart Total: ${{ total|floatformat:2 }}</strong></h6>
@@ -189,7 +189,7 @@
         var csrfToken = "{{ csrf_token }}"
         var itemId = $(this).attr('id').split('remove_')[1];
         var size = $(this).data('product_size');
-        var url = `/bag/remove/${itemId}`;
+        var url = `/cart/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size}
 
         $.post(url, data)
