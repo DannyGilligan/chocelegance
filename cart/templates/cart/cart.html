@@ -17,6 +17,7 @@
 <div class="overlay"></div>
 <div class="container mb-2">
 
+    <!-- Shopping cart title-->
     <div class="row">
         <div class="col">
             <hr>
@@ -25,9 +26,9 @@
         </div>
     </div>
 
+    <!-- Table showing product details -->
     <div class="row">
         <div class="col">
-
             <!-- Table will only be rendered if cart has any content -->
             {% if cart_items %}
             <div class="table-responsive rounded">
@@ -173,7 +174,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<!-- Loads the script used to increase or decrease the itmes when '+' or '-' button is clicked -->
+<!-- Loads the script used to increase or decrease the items when '+' or '-' button is clicked -->
 {% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
