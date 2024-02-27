@@ -47,7 +47,7 @@
                         <p class="mb-1 mt-0 small text-muted">Subtotal</p>
                     </div>
                 </div>
-                {% for item in bag_items %}
+                {% for item in cart_items %}
                     <div class="row">
 
                         <!-- Product image -->
@@ -148,11 +148,11 @@
                 <div class="submit-button text-right mt-5 mb-2">  
                     
                     <!-- Link back to shopping back to adjust order if needed -->
-                    <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
+                    <a href="{% url 'view_cart' %}" class="btn btn-outline-black rounded-0">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span class="font-weight-bold">Adjust Bag</span>
+                        <span class="font-weight-bold">Adjust Cart</span>
                     </a>
 
                     <!-- Payment submit button -->
