@@ -23,15 +23,18 @@
 <br>
 Chocelegance will offer an online presence for an Artisan chocolate maker to sell their producs via a functioning webshop.
 
-The project has been deployed in an incomplete state, I was unable to complete the walkthrough and customise the site before the project deadline.
-
+The project has been deployed in an incomplete state.
+<br>
+I was unable to complete the walkthrough and customise the site before the project deadline.
+<br>
 The deployed version can be found [here](https://chocelegance-8a274b710b0e.herokuapp.com/).
-
+<br>
 The admin credentials are:
-
+<br>
 User: DannyAdmin
+<br>
 Pass: Welcome123
-
+<br>
 [Back to Top](#chocelegance)
 <br>
 <br>
@@ -43,6 +46,11 @@ Pass: Welcome123
 ## Features 
 
 
+
+[Back to Top](#chocelegance)
+<br>
+<br>
+<br>
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- DESIGN SECTION -->
 ## Design 
