@@ -27,7 +27,8 @@ The project has been deployed in an incomplete state.
 <br><br>
 I was unable to complete the walkthrough and customise the site before the project deadline.
 <br><br>
-
+The deployed site used the Code Institute Boutique Ado walkthrough project as its basis.
+<br><br>
 The deployed version can be found [here](https://chocelegance-8a274b710b0e.herokuapp.com/).
 <br><br>
 The admin credentials are:
