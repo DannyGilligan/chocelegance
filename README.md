@@ -22,7 +22,7 @@
 ## Introduction
 <br>
 Chocelegance will offer an online presence for an Artisan chocolate maker to sell their producs via a functioning webshop.
-<br>
+<br><br>
 The project has been deployed in an incomplete state.
 <br><br>
 I was unable to complete the walkthrough and customise the site before the project deadline.
