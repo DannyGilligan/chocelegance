@@ -36,6 +36,9 @@ User: DannyAdmin
 <br><br>
 Pass: Welcome123
 <br><br>
+
+The admin dashboard can be accessed [here](https://chocelegance-8a274b710b0e.herokuapp.com/admin).
+
 [Back to Top](#chocelegance)
 <br>
 <br>
